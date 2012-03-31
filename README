@@ -1,0 +1,59 @@
+rss - konsolowy czytnik kanałów RSS.
+(c) 2008 Adrian Jamróz
+
+1. O co chodzi?
+
+    rss jest programem umożliwiającym odczytywanie wiadomości publikowanych
+    w kanałach informacyjnych RSS z konsoli linuksowej. W obecnej formie jest
+    nieprzenośny, jednak drobne zmiany pozwolą uruchomić go na innych systemach
+    uniksowych, takich jak np. FreeBSD. Program powstał jako projekt zaliczeniowy
+    kursu ,,Programowanie I'' na WFAIS UJ.
+
+2. Wymagania
+
+    - system Linux
+    - libreadline
+    - libxml2
+    - libsqlite3
+
+3. Jak zacząć
+
+    Aby zacząć, należy dodać jakiś kanał RSS:
+    
+    rss> add mmkrakow http://www.mmkrakow.pl/rss/news.xml
+    Czy pobrać nowe wpisy z nowo dodanego źródła? [T/n] t
+    Łączę się z 193.200.227.10:80... pobieram: 100%
+    Zapisano 25 nowych wiadomości ze źródła mmkrakow.
+
+    Program zapyta, czy pobrać najnowsze wiadomości z wybranego źródła. Po
+    zakończeniu tej operacji, można pobrane wiadomości przeczytać:
+    
+    rss> view feed mmkrakow
+    
+    URL: http://www.mmkrakow.pl/2807/2008/11/17/afera-na-stadionie-hutnika?category=sport
+    Data: Monday, 17 November 2008, 19:10:00
+    Afera na stadionie Hutnika
+    Kibice Hutnika skarżą się na trenera Unii Tarnów. Strona krakowskiego klubu podaje 
+    zaskakujące informacje na temat jego zachowania. Postanowiliśmy zbadać tę niepokojącą 
+    sytuację.
+
+    Źródło: mmkrakow
+    Data: Monday, 17 November 2008, 18:15:00 
+    URL: http://www.mmkrakow.pl/2744/2008/11/17/polish-nightlife-awards?category=depesze
+    Polish Nightlife Awards 2008
+    Trwa plebiscyt miesięcznika "Activist" dla najlepszych polskich wykonawców, centrów kultury 
+    i wydarzeń mijającego roku. O nagrodę walczą dwie krakowskie imprezy.
+
+    [...]
+
+    Więcej informacji na temat składni poleceń 'update' i 'view', a także składni innych 
+    dostępnych poleceń dostarczy polecenie 'help'.
+    
+4. Pułapki
+
+    Może zdarzyć się sytuacja, w której program odmówi sparsowania źródła z pod danego adresu.
+    Polecenie 'update' zwróci błąd parsowania pliku XML. Dzieje się tak dlatego, że użyta w
+    programie biblioteka libxml2 przykłada dużą wagę do poprawności dokumentu, czego nie można
+    powiedzieć o niektórych webmasterach - w konsekwencji, nieprawidłowo sformatowany plik XML
+    (a kanaly RSS są plikami XML) zostanie odrzucony przez parser.
+    
